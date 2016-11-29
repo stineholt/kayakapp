@@ -6,6 +6,7 @@
 package Dataaccess;
 
 import Domain.User;
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,7 +19,24 @@ import java.util.ArrayList;
  */
 
 public class UserMapper {
-//    public void createUser(){}
+    public void createUser(String username, String password){
+        try{
+            String sql = "insert into user(username,password) values (?,?)";
+            Connection con = DB.getConnection();
+            PreparedStatement pstmt = con.prepareCall(sql);
+
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
+            
+            pstmt.executeUpdate();
+
+        }catch(SQLException ex) {
+            ex.printStackTrace();
+        }
+    
+}
+        
+    
 //    public User getUser (int id){}
     public ArrayList<User> getAllUsers(){
     ////////// STINES FORSØG
@@ -77,17 +95,18 @@ public class UserMapper {
     
 //////  TEST af outputtet fra de forskellige usermapper funktioner
     
-    public static void main(String[] args) {
-        UserMapper um = new UserMapper();
-        boolean isAuthenticated = um.authenticateUser("test", "test123");
-        if(isAuthenticated)
-            System.out.println("Yeas det virker");
-        else
-            System.out.println("Oh no access");
-        
-        ArrayList<User> users = um.getAllUsers();
-        for (User user : users) {
-            System.out.println(user.getUsername());
-        }
-    }
+//    public static void main(String[] args) {
+//        UserMapper um = new UserMapper();
+//        boolean isAuthenticated = um.authenticateUser("test", "test123");
+//        if(isAuthenticated)
+//            System.out.println("Yeas det virker");
+//        else
+//            System.out.println("Oh no access");
+//        
+//        ArrayList<User> users = um.getAllUsers();
+//        for (User user : users) {
+//            System.out.println(user.getUsername());
+//        }
+//        
+//    } //////  TEST af outputtet SLUT ///////
 }

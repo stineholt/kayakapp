@@ -56,7 +56,7 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         UserMapper um = new UserMapper();
-//        KajakMapper km = new KajakMapper();
+//        KajakMapper km = new KajakMapper(); // fjernet og puttet i kajakservlet
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         boolean isAuthenticated = um.authenticateUser(username, password);
@@ -68,11 +68,10 @@ public class Login extends HttpServlet {
             session.setAttribute("username", username);
             session.setAttribute("userlist", listen);
             
-            
-//            response.getWriter().print("Du er nu logget ind ");
-//            PrintWriter out = response.getWriter();
-//            for (User user : listen) {
-//                out.print(user.getUsername());
+//            response.getWriter().print("Du er nu logget ind ");   // for testing internt nederst i serlvet
+//            PrintWriter out = response.getWriter();               // for testing internt nederst i serlvet
+//            for (User user : listen) {                            // for testing internt nederst i serlvet
+//                out.print(user.getUsername());                    // for testing internt nederst i serlvet
 //            }
 
                       
@@ -80,7 +79,8 @@ public class Login extends HttpServlet {
             rd.forward (request, response);
             
         }else{
-            response.getWriter().print("du er ikke logget ind");
+            response.getWriter().print("Du er ikke logget ind");
+            
         }
         String origin = request.getParameter("origin");
         if(origin != null){

@@ -13,9 +13,12 @@
     </head>
     <body>
         <form action="Login" method="POST">
-            <input type="text" name="username" value="" />
-            <input type="text" name="password" value="" />
-            <input type="submit" value="Log in" />
+            <input type="text" name="username" value="" /><br>
+            <input type="text" name="password" value="" /><br>
+            <input type="submit" value="Log in" /><br><br>
+        </form>
+        <form action="createNewUser.jsp" method="GET">
+            <input type="submit" value="Sign up" />
         </form>
     </body>
 </html>
